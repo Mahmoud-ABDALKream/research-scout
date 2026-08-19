@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Yes, there is a **\"FlyRank Graduate\"** badge in the footer. It is located in the bottom-right section of the page, featuring a small red icon (resembling a YouTube play button or similar logo) followed by the text \"FlyRank Graduate\" in light blue. Below the badge, smaller text reads \"AI Fluency Program.\"\n\n**Is it clickable?** Based on standard web design patterns for such certification badges and the context provided, **yes, it is almost certainly a clickable link** that directs to `aifluency.flyrank.ai` (or a related FlyRank program page).\n\n### Description of the Footer:\nThe footer is divided into three main columns against the dark navy background:\n\n*   **Left Column:** Displays the name **\"Mahmoud ABD ELKream\"** in bold white text, followed by a short professional description: *\"Front-End Developer & Product Designer. Building intuitive digital experiences for healthcare, e-commerce, and beyond.\"*\n*   **Center Column:** Titled **\"Contact me\"**, it lists:\n    *   Email: mahmoudabdelkreambusiness@gmail.com\n    *   GitHub (link)\n    *   LinkedIn (link)\n*   **Right Column:** Contains the **FlyRank Graduate** badge/button for the AI Fluency Program.\n\n**Bottom Bar:**\nA thin horizontal line separates the main footer content from the copyright bar at the very bottom, which reads:\n*\"© 2026 Mahmoud ABD ELKream · Built with Next.js, React, and Tailwind CSS · Alexandria, Egypt.\"*\n\nThere is also a dark circular button with the letter **\"N\"** in the bottom-left corner (likely a theme toggle or back-to-top button).",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1787156627,
+  "id": "20260820002341b05cbde40f6643ab",
+  "model": "glm-5v-turbo",
+  "object": "chat.completion",
+  "request_id": "20260820002341b05cbde40f6643ab",
+  "usage": {
+    "completion_tokens": 357,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1714,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 2071
+  }
+}
