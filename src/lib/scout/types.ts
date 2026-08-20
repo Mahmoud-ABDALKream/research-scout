@@ -12,6 +12,7 @@ export type ScoutRunOptions = {
   maxRead?: number;
   maxQualified?: number;
   egyptFirst?: boolean;
+  profile?: CvProfile;
 };
 
 export type CvProfile = {

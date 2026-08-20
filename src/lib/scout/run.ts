@@ -18,7 +18,7 @@ export async function runScout(
   const maxQualified = options.maxQualified ?? MAX_QUALIFIED;
   const egyptFirst = options.egyptFirst ?? true;
 
-  const profile = await loadActiveProfile();
+  const profile = options.profile?.skills?.length ? options.profile : await loadActiveProfile();
   const started = Date.now();
   const log: string[] = [];
   const say = (message: string) => {
@@ -35,7 +35,7 @@ export async function runScout(
   say(
     groqEnabled()
       ? `LLM: Groq ${groqModelName()} — deeper CV match, scoring, and apply kits`
-      : "LLM: heuristic only (set GROQ_API_KEY for stronger scoring)"
+      : "LLM: heuristic only (set GROQ_API_KEY in Vercel env, then redeploy)"
   );
   say(`Options: threshold ${threshold}/9 · read ${maxRead} · cap ${maxQualified} · egyptFirst ${egyptFirst}`);
   say("=".repeat(64));

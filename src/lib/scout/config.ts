@@ -1,3 +1,4 @@
+import os from "os";
 import path from "path";
 
 export const USER_PROFILE = {
@@ -70,6 +71,11 @@ export const DOMAIN_ADJACENT = [
 ];
 
 export function scoutDir() {
+  if (process.env.SCOUT_DIR) return process.env.SCOUT_DIR;
+  // Vercel / Lambda filesystems are read-only except /tmp
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    return path.join(os.tmpdir(), "research-scout");
+  }
   return path.join(process.cwd(), "agent_mvp");
 }
 

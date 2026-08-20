@@ -92,7 +92,16 @@ export default function ScoutDashboard() {
       setTracker(h.tracker || []);
       setSummary(s.summary || "");
       setEvalData(e);
-      if (cv.profile) setCvProfile(cv.profile);
+      if (cv.profile?.source === "cv") setCvProfile(cv.profile);
+      else {
+        try {
+          const local = localStorage.getItem("scout-cv");
+          if (local) setCvProfile(JSON.parse(local));
+          else if (cv.profile) setCvProfile(cv.profile);
+        } catch {
+          if (cv.profile) setCvProfile(cv.profile);
+        }
+      }
       setGroqOn(Boolean(cv.groq));
       setGroqModel(cv.model || "");
       if (h.lastResult) {
@@ -127,7 +136,13 @@ export default function ScoutDashboard() {
       const res = await fetch("/api/scout/run", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ threshold, egyptFirst, maxRead: 32, maxQualified: 28 }),
+        body: JSON.stringify({
+          threshold,
+          egyptFirst,
+          maxRead: 32,
+          maxQualified: 28,
+          profile: cvProfile || undefined,
+        }),
       });
       if (!res.ok || !res.body) throw new Error(`Run failed (${res.status})`);
       const reader = res.body.getReader();
@@ -163,7 +178,7 @@ export default function ScoutDashboard() {
     } finally {
       setRunning(false);
     }
-  }, [ar, egyptFirst, loadMeta, threshold]);
+  }, [ar, cvProfile, egyptFirst, loadMeta, threshold]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -206,6 +221,11 @@ export default function ScoutDashboard() {
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error || "CV upload failed");
       setCvProfile(data.profile);
+      try {
+        localStorage.setItem("scout-cv", JSON.stringify(data.profile));
+      } catch {
+        /* private mode */
+      }
     } catch (err) {
       setCvError(err instanceof Error ? err.message : "CV upload failed");
     } finally {
@@ -226,6 +246,11 @@ export default function ScoutDashboard() {
       if (!res.ok || !data.ok) throw new Error(data.error || "Could not read CV text");
       setCvProfile(data.profile);
       setCvPaste("");
+      try {
+        localStorage.setItem("scout-cv", JSON.stringify(data.profile));
+      } catch {
+        /* private mode */
+      }
     } catch (err) {
       setCvError(err instanceof Error ? err.message : "Could not read CV text");
     } finally {
@@ -236,6 +261,7 @@ export default function ScoutDashboard() {
   const clearCv = async () => {
     setCvBusy(true);
     try {
+      localStorage.removeItem("scout-cv");
       const res = await fetch("/api/scout/cv", { method: "DELETE" });
       const data = await res.json();
       setCvProfile(data.profile);
@@ -398,8 +424,8 @@ export default function ScoutDashboard() {
                         "Groq is on: smarter CV parsing, scoring, and apply kits."
                       )
                     : t(
-                        "Groq مش متصل — التقييم هيكون بالقواعد فقط.",
-                        "Groq is offline — scoring stays heuristic."
+                        "Groq مش متصل. على Vercel: Settings → Environment Variables → GROQ_API_KEY ثم Redeploy.",
+                        "Groq is offline. On Vercel add GROQ_API_KEY under Environment Variables, then Redeploy."
                       )}
                 </p>
               </div>

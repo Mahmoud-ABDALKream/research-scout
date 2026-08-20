@@ -6,7 +6,7 @@ export const GROQ_MODEL = process.env.GROQ_MODEL || "openai/gpt-oss-120b";
 const GROQ_FAST = "openai/gpt-oss-20b";
 
 export function groqEnabled() {
-  return Boolean(process.env.GROQ_API_KEY);
+  return Boolean(process.env.GROQ_API_KEY?.trim());
 }
 
 export function groqModelName() {

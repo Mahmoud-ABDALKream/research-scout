@@ -19,8 +19,13 @@ export async function loadActiveProfile(): Promise<CvProfile> {
 }
 
 export async function saveProfile(profile: CvProfile) {
-  await fs.mkdir(scoutDir(), { recursive: true });
-  await fs.writeFile(FILE(), JSON.stringify(profile, null, 2));
+  try {
+    await fs.mkdir(scoutDir(), { recursive: true });
+    await fs.writeFile(FILE(), JSON.stringify(profile, null, 2));
+  } catch (err) {
+    const code = (err as NodeJS.ErrnoException)?.code;
+    if (code !== "EROFS" && code !== "EACCES") throw err;
+  }
   return profile;
 }
 
