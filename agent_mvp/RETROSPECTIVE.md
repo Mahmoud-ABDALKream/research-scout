@@ -1,39 +1,39 @@
-# Retrospective — Written for the Person I Was in Week 1
+# Retrospective — written for the person I was in Week 1
 
-*Mahmoud, here's what I'd tell you if I could go back to the start of the AI Fluency track. Read this before you begin.*
-
----
-
-You'll start this track thinking "I use ChatGPT" makes you AI-fluent. It doesn't. By Week 3, you'll understand the difference between generating images and curating them — and that judgment, not generation, is the skill employers actually test.
-
-Here's what specifically changed in how you work.
-
-## What You Set Out to Do
-
-In Week 1, the goal was simple: build a portfolio that proves you're a Front-End Developer and Product Designer. You had the skills (React, TypeScript, Figma, three years of freelance), but no proof that lived on a URL anyone could visit. The proof statement you wrote — "From Figma to shipped React — award-winning product design for healthcare and e-commerce" — was the first thing you sharpened, and it became the spine of everything after.
-
-## What Changed
-
-**You learned to sort, not just generate.** The Curate Your Images task in Week 3 was the turning point. AI generated ten claim options in seconds; the skill was picking one and editing it. AI generated a hundred hero images; the skill was rejecting the magenta one because it broke the palette. By the end of that week, you understood: "AI lets you make any image in seconds, which is exactly why judgment matters more than generation." That sentence appeared in your deliverable. It's the sentence that changed how you work.
-
-**You learned to build workflows, not just prompts.** The Workflow Audit in Build Week was where single prompts became systems. You built a 5-step pipeline (gather → synthesize → draft → review → format) that ran on five real topics and produced real briefs. You learned that workflows save hours where prompts save minutes — and that the failure points (citation fabrication, tension-flattening) are where human review is non-negotiable.
-
-**You learned the workflow vs. agent distinction.** The Agents & MCP task forced you to be honest: your pipeline is a workflow, not an agent. The LLM never decides which step runs next; your Python code does. That honesty — calling it what it is, not what sounds impressive — is the credibility line. You then designed one concrete upgrade (the "should I gather more sources?" decision point) that would turn it into a minimal agent. You understood the architecture before building it.
-
-**You shipped.** By Week 5, the portfolio was live — six pages, real work captures, working navigation. A VLM reviewer gave you 17/30 on design. You fixed the must-fixes (spacing, typography, the portfolio rule that design frames the work). Score went to 26/30. By Week 8, the contact form had a real backend. By Week 9, you'd broken your own site 12 times, fixed 5 issues, and documented 4 known limitations honestly.
-
-## What You'd Build Next
-
-Three things, in order: wire the contact form to Resend for actual email delivery (free tier, ~30 min). Deploy each project (Medoniq, WEflex, Serinia) to its own Vercel URL so the "shipped React" claim has live proof, not just GitHub links. Set up the cron trigger for Research Scout so it runs daily without you pressing a button — the workflow is ready, the GitHub Actions file is written, you just need to add the API key.
-
-## The Three Most Transferable Things You Learned
-
-1. **Judgment over generation.** AI can make anything; the skill is choosing what serves your proof and rejecting what doesn't. This applies to images, code, job applications, and career decisions.
-
-2. **Workflows over prompts.** Single prompts save minutes; chained workflows with defined handoffs save hours. The pipeline you built for industry briefs is the same pattern you'd use for any repeatable research task — job scouting, competitive analysis, study notes.
-
-3. **Honesty as credibility.** The "still ugly" list, the known limitations, the AI transparency statement — naming what's broken and what AI did reads as strength, not weakness. Employers, reviewers, and recruiters can tell when you're hiding something. The honest version of your work is the version that gets you hired.
+*Mahmoud — read this before you treat “I use ChatGPT” as fluency.*
 
 ---
 
-*You started this track thinking AI fluency was about using AI tools. You finished it knowing it's about judgment, systems, and honesty. The tools are the easy part. The hard part — and the valuable part — is deciding what to do with what they give you.*
+You will start the track thinking a portfolio is a gallery and AI is a faster intern. By Week 10 you will have a URL, a working agent, and a different way of working. The change is not “I prompt better.” It is that you now sort, chain, and refuse.
+
+## What you set out to do
+
+Week 1 had one job: prove you are a Front-End Developer and Product Designer, not a student with a Figma file. The line you sharpened — “From Figma to shipped React — award-winning product design for healthcare and e-commerce” — became the spine of the site and of Research Scout. The agent exists because the portfolio claim is healthcare and e-commerce UI, and you were wasting evenings on LinkedIn for junior React roles in Egypt.
+
+## What specifically changed in how you work
+
+**You learned to sort, not generate.** Week 3 (Curate Your Images) was the break. AI gave ten claim lines in seconds; the work was picking one and cutting the rest. AI gave a hundred heroes; you rejected the magenta one because it broke Crystal Blue. That is the same muscle as scoring jobs: the model can praise every listing; your rubric drops anything under 5/9.
+
+**You stopped living in single prompts.** The Workflow Audit forced a five-step pipeline with named failure points. Research Scout is that pipeline with tools attached: GATHER → READ → SCORE → FILTER → FORMAT. The LLM does not choose the next step. Your code does. When a tutor called that an agent, you kept the honest version: the control flow is yours; the model is a tool inside SCORE and FORMAT.
+
+**You put the agent where a stranger can press it.** The Python MVP proved the loop. The thing you actually demo is `/scout` in the Next.js app: CV upload, twenty-six sources, Groq why-fit, apply kit, tracker. That was not in the Week 1 plan. What changed: you stopped treating the capstone as a script reviewers must run in a terminal, and you stopped treating the portfolio as a separate object from the agent.
+
+**You learned a penalty is a product decision.** The first live run let a Senior Front-End role through at 5/9 because React and healthcare matched. You are a student. The multi-signal seniority penalty (LLM flag, title keyword, years regex, lead/staff title, cap −4) is the first time you designed against your own model instead of decorating its output. E3 is 6/6. That test is how you work now: if the model can be fluent and wrong, add a check you can run without the model.
+
+**You shipped, then broke your own site.** Empty-but-live, six pages, contact API, twelve edge cases, XSS and 404 and OG tags. The same honesty landed in Scout: Cloudflare blocks are a limitation in the README, not a silent zero in a screenshot.
+
+## What you’d build next
+
+Wire Scout to a daily GitHub Action with `GROQ_API_KEY` as a secret so the digest exists before you open the laptop. Prefer official or RSS sources over DuckDuckGo `site:` queries for Egypt boards. Send the contact form through Resend. Deploy Medoniq / WEflex / Serinia so “shipped React” is a URL, not only a case study. None of that is the capstone. The capstone is one job, never auto-apply, eval in the repo.
+
+## The three most transferable things
+
+1. **Judgment over generation.** AI will always produce more than you need. The skill is a threshold, a skip list, and the nerve to publish a “thin day” instead of padding.
+
+2. **Workflows over prompts.** A prompt saves a minute. A named pipeline with logs, an audit file, and a test table saves the week you would have spent re-litigating the same senior role.
+
+3. **Honesty as the interface.** “The agent applied for me” would have been a better demo sentence and a worse product. Naming the blocked boards, the Groq optional path, and what you checked yourself is how a reviewer decides you can be trusted with a real pipeline.
+
+---
+
+*You arrived thinking fluency was access to models. You leave knowing it is the habit of deciding what the model is for, what it must not do, and what you still owe the human who will click Apply.*

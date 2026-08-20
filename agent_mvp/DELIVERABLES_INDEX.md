@@ -1,130 +1,103 @@
-# AI Fluency Track — Deliverables Index
+# AI Fluency — deliverables index (FL-10 package)
 
-**Participant:** Mahmoud ABD ELKream
-**GitHub:** https://github.com/Mahmoud-ABDALKream
-**Live site:** https://mahmoud-ahmed-abdelkream.vercel.app
+**Participant:** Mahmoud ABD ELKream  
+**Capstone repo:** https://github.com/Mahmoud-ABDALKream/research-scout  
+**Scout (live):** https://research-scout-swart.vercel.app/scout  
+**Portfolio (live):** https://mahmoud-ahmed-abdelkream.vercel.app  
+**Assignment briefs:** [Week 10 · Send the Link](https://aifluency.flyrank.ai/week-10.html) · [transparency map](https://general-ai-fluency.netlify.app/study-4d)
 
----
+This file is the package index. Every track deliverable should be reachable from here.
 
-## Week 1 — Proof Statement
-- **One-line claim:** "From Figma to shipped React — award-winning product design for healthcare and e-commerce."
-- **Status:** ✅ Defined, used across all subsequent deliverables
-
-## Week 3 — Curate Your Images
-- **PDF:** Curate_Your_Images_AIFluency_Week03.pdf
-- **Content:** Content map (10 image slots), 6 real work captures, 1 real photo, 2 AI tissue keepers, 1 AI rejected (hero_B), rubric mapping
-- **Status:** ✅ Complete
-
-## Week 3 — The Through Line
-- **PDF:** The_Through_Line_AIFluency_Week03.pdf
-- **Content:** 10 AI claim options + picked/sharpened one, 6-page content map, CTA ladder, proof-gather list (10 gaps), rubric mapping
-- **Status:** ✅ Complete
-
-## Week 4 — Empty but Live
-- **PDF:** Empty_but_Live_AIFluency_Week04.pdf
-- **Live URL:** mahmoud-ahmed-abdelkream.vercel.app (empty-but-live page)
-- **Content:** Next.js 16 + TS + Tailwind scaffold, desktop + mobile screenshots, stack-match table, Claude Project loading checklist
-- **Status:** ✅ Complete
-
-## Week 4 — Three Roads
-- **PDF:** Three_Roads_AIFluency_Week04.pdf
-- **Content:** 4 constraints, 3 stack options (WordPress/Astro/Next.js), pressure-test (4 questions), decision rationale in own words, backend audit
-- **Status:** ✅ Complete
-
-## Build Week — Workflow Audit
-- **PDF:** Workflow_Audit_AIFluency_BuildWeek.pdf
-- **Raw outputs:** Workflow_Audit_Raw_Outputs.md
-- **Content:** 5-step pipeline (gather→synthesize→draft→review→format), 5 real runs, time accounting, 5 failure points
-- **Status:** ✅ Complete
-
-## Build Week — Agents & MCP
-- **PDF:** Agents_and_MCP_AIFluency_BuildWeek.pdf
-- **Content:** Workflow vs agent distinction (Anthropic definitions), 3 MCP-style tool tasks, FL-04 classification, one concrete agent upgrade
-- **Status:** ✅ Complete
-
-## Week 5 — Ship It
-- **PDF:** Ship_It_AIFluency_Week05.pdf
-- **Live site:** https://mahmoud-ahmed-abdelkream.vercel.app (6 pages)
-- **Content:** All 6 sitemap pages live, real work captures, VLM fresh-visitor walkthrough, 10-item "still ugly" list, build explanation table
-- **Status:** ✅ Complete
-
-## Week 3 — Visual Judgment
-- **PDF:** Visual_Judgment_AIFluency_Week03.pdf
-- **Content:** VLM design audit (before 17/30 → after 26/30), 5 fixes applied, portfolio rule (design frames the work: 2/5 → 5/5), AI image re-judgment, visual identity system
-- **Status:** ✅ Complete
-
-## Capstone — Agent Design Doc (FL-06)
-- **PDF:** Research_Scout_Capstone_Agent_Design.pdf
-- **Content:** Job to be done, user + frequency, 7 tools with access plans, system prompt, 5 eval cases, 7 risks with guardrails, platform justification
-- **Status:** ✅ Complete
-
-## Capstone — MVP (FL-07)
-- **PDF:** Research_Scout_MVP_Capstone.pdf
-- **GitHub:** https://github.com/Mahmoud-ABDALKream/research-scout
-- **Content:** Working agent (5-step workflow), 3 live tool connections, build log (7 iterations), raw run capture, audit log, rubric mapping
-- **Status:** ✅ Complete
-
-## Week 6 — Explain It Like You Built It
-- **PDF:** Explain_It_Like_You_Built_It_Week06.pdf
-- **Content:** Server vs Client Components in Next.js — the onMouseEnter bug, plain-words explanation (restaurant analogy), line-by-line code walkthrough
-- **Status:** ✅ Complete
-
-## Week 7 — Survive the Crit
-- **PDF:** Survive_the_Crit_Week07.pdf
-- **Content:** VLM design review (2 key questions), 8 feedback items sorted (3 must-fix / 5 nice-to-have), all 3 must-fixes fixed on live site, before/after evidence
-- **Status:** ✅ Complete
-
-## PF-04 — Personal Website + DNS
-- **PDF:** Personal_Website_DNS_Walkthrough_PF04.pdf
-- **Live URL:** mahmoud-ahmed-abdelkream.vercel.app
-- **Content:** Site with positioning + LinkedIn/GitHub/CV/booking links, DNS walkthrough (resolver→nameserver→CNAME→response), every file explained
-- **Status:** ✅ Complete
-
-## Week 8 — Make It Do Something
-- **PDF:** Make_It_Do_Something_Week08.pdf
-- **Content:** Working contact form with real backend (Next.js API route), 3 curl tests (valid/missing/invalid), plain-words backend explainer
-- **Status:** ✅ Complete
-
-## Week 9 — Break Your Own Site
-- **PDF:** Break_Your_Own_Site_Week09.pdf
-- **Content:** 12 edge-case tests, 5 fix-nows addressed (XSS, max-length, 404 page, favicon, OG tags), 4 known limitations documented
-- **Status:** ✅ Complete
-
-## Week 9 — Plant Your Flag
-- **PDF:** Plant_Your_Flag_Week09.pdf
-- **Content:** Clean domain, Vercel Analytics installed, launch hygiene verified (9 items), FlyRank badge in footer, mobile verified
-- **Status:** ✅ Complete
-
-## Week 10 — Documentation and Demo (FL-09)
-- **README:** README_FL09.md (this repo)
-- **Demo script:** DEMO_SCRIPT.md (5-minute narration guide)
-- **Content:** Full setup guide, architecture sketch, v2 eval results, 7 limitations, AI transparency statement
-- **Status:** ✅ Complete
-
-## Week 10 — Final Package + Retrospective (FL-10)
-- **Index:** This file (DELIVERABLES_INDEX.md)
-- **Retrospective:** RETROSPECTIVE.md
-- **Build-in-public post:** BUILD_IN_PUBLIC_POST.md
-- **Content:** All deliverables linked, 500-800 word retrospective, build-in-public post
-- **Status:** ✅ Complete
+**Still yours in the portal (not files in git):** hours log · showcase thread post · FlyRank domain confirmation · demo video URL after you record it.
 
 ---
 
-## GitHub Repos
+## FL-09 — Documentation and demo
 
-1. **Portfolio:** https://github.com/Mahmoud-ABDALKream/portfolio
-   - Next.js 16 portfolio site (6 pages)
-   - Contact form with working backend
-   - All visual judgment fixes
-   - SEO meta + favicon + analytics
+| Deliverable | Where |
+|-------------|--------|
+| README (what / whom / setup / usage / architecture / v2 eval / limitations / AI transparency) | [README.md](../README.md) |
+| Demo script (live run, 3–5 min, one decision + one limitation on camera) | [DEMO_SCRIPT.md](DEMO_SCRIPT.md) |
+| Demo video link | Paste into README after recording; post the same URL in the showcase thread |
+| E3 eval (6/6) | http://localhost:3000/api/scout/eval · dashboard E3 panel · [test_eval_e3.py](test_eval_e3.py) |
 
-2. **Research Scout (capstone agent):** https://github.com/Mahmoud-ABDALKream/research-scout
-   - Agent code (scout.py)
-   - E3 eval tests (test_eval_e3.py)
-   - Weekly summary (weekly_summary.py)
-   - Cron setup guide (CRON_SETUP.md)
-   - All PDF deliverables
+## FL-10 — Final package
 
-## All PDFs
+| Deliverable | Where |
+|-------------|--------|
+| This index | [DELIVERABLES_INDEX.md](DELIVERABLES_INDEX.md) |
+| Retrospective (500–800 words, for Week-1 you) | [RETROSPECTIVE.md](RETROSPECTIVE.md) |
+| Build-in-public post (one decision, one limitation) | [BUILD_IN_PUBLIC_POST.md](BUILD_IN_PUBLIC_POST.md) |
+| Plan to keep building | [PLAN_TO_KEEP_BUILDING.md](PLAN_TO_KEEP_BUILDING.md) |
+| Hours log | Internship portal only |
+| Live site + post URL | Portfolio + scout URLs above; post = BUILD_IN_PUBLIC_POST.md (publish to LinkedIn / thread) |
 
-Available at: https://github.com/Mahmoud-ABDALKream/research-scout/tree/main/agent_mvp
+---
+
+## Full track
+
+### Week 1 — Proof statement
+- One-line claim: "From Figma to shipped React — award-winning product design for healthcare and e-commerce."
+- Status: used across site + Scout
+
+### Week 3 — Curate your images / through line / visual judgment
+- PDFs in this folder when present: `Curate_Your_Images_*.pdf`, `The_Through_Line_*.pdf`, `Visual_Judgment_*.pdf`
+- Status: complete (VLM audit 17/30 → 26/30)
+
+### Week 4 — Empty but live / three roads
+- Live URL: mahmoud-ahmed-abdelkream.vercel.app
+- Status: complete (Next.js 16 chosen)
+
+### Build week — Workflow audit / agents & MCP
+- Pipeline: gather → synthesize → draft → review → format
+- Honest call: that pipeline was a **workflow**; Scout later added tools + a UI
+- Status: complete
+
+### Week 5 — Ship it
+- Six pages live
+- Status: complete
+
+### Capstone FL-06 — Agent design
+- PDF: `Research_Scout_Capstone_Agent_Design.pdf` (if in folder)
+- Status: complete
+
+### Capstone FL-07 — MVP
+- Python: [scout.py](scout.py)
+- TypeScript product: `src/lib/scout/` + `/scout`
+- Status: complete (web app is the demo surface)
+
+### Week 6 — Explain it like you built it
+- Server vs client / onMouseEnter
+- Status: complete
+
+### Week 7 — Survive the crit
+- Must-fixes on live site
+- Status: complete (design-review checkpoint)
+
+### PF-04 — Personal site + DNS
+- mahmoud-ahmed-abdelkream.vercel.app
+- Status: complete — **confirm FlyRank custom domain in the portal if required**
+
+### Week 8 — Make it do something
+- Contact API + curl tests
+- Status: complete
+
+### Week 9 — Break your own site / plant your flag
+- Edge cases, XSS, 404, favicon, OG, analytics, badge
+- Status: complete (hardening checkpoint)
+
+### Week 10 — FL-09 + FL-10
+- This index + root README + retrospective + demo script
+- Status: docs complete; **record the live demo and complete hours log in the portal**
+
+---
+
+## GitHub
+
+1. **This repo (agent + portfolio app):** https://github.com/Mahmoud-ABDALKream/research-scout
+2. **Earlier portfolio clone (if still used):** https://github.com/Mahmoud-ABDALKream/portfolio
+
+## Contact
+
+- Email: mahmoudabdelkreambusiness@gmail.com
+- Location: Alexandria, Egypt

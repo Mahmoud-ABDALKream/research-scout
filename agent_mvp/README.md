@@ -1,8 +1,12 @@
-# Research Scout
+# Research Scout (Python MVP)
 
-A personal AI agent that pre-qualifies healthcare and e-commerce product roles matching **Mahmoud ABD ELKream**'s profile. Built as the AI Fluency Capstone MVP.
+The **canonical product** is the Next.js app. Follow the [root README](../README.md): `npm run dev` → http://localhost:3000/scout
 
-> One job done well: find 3–5 pre-qualified opportunities daily, so I stop scanning LinkedIn/Upwork/Wuzzuf manually.
+This folder keeps the original FL-07 Python agent plus FL-09/FL-10 docs.
+
+A personal AI agent that pre-qualifies healthcare and e-commerce product roles matching **Mahmoud ABD ELKream**'s profile.
+
+> One job done well: find 3–5 pre-qualified opportunities daily, so I stop scanning LinkedIn/Upwork/Wuzzuf manually. The agent never auto-applies.
 
 ## How It Works
 

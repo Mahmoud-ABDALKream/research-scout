@@ -1,61 +1,45 @@
-# Demo Script — Research Scout (3-5 minutes)
+# Demo script — Research Scout (3–5 minutes, live, no slides)
 
-**Setup before recording:**
-- Open terminal at `~/research-scout/agent_mvp`
-- Have `scout.py` ready to run
-- Have `test_eval_e3.py` ready to run
-- Close all other tabs — show only the real thing
+**Before record:** `npm run dev` · browser at [http://localhost:3000/scout](http://localhost:3000/scout) · Groq badge visible if the key is loaded · close extra tabs.
+
+**After record:** paste the public video URL into the root `README.md` (“Video link”) and the showcase thread.
 
 ---
 
-## [0:00] Introduction (30 seconds)
+## [0:00] What it is (25s)
 
-> "This is Research Scout, my AI Fluency capstone agent. It's a personal job-scouting agent that pre-qualifies healthcare and e-commerce product roles matching my skills. Instead of scanning LinkedIn and Upwork manually for 30 minutes a day, the agent does it in 90 seconds and gives me a clean digest of 3-5 qualified roles."
+> “This is Research Scout, my AI Fluency capstone. It’s a personal agent that pre-qualifies React and product roles for me — healthcare, e-commerce, junior-friendly, Egypt or remote. I used to spend half an hour a day on LinkedIn and Wuzzuf. The agent gathers, reads, scores, and filters. I still click Apply. It never submits an application.”
 
-## [0:30] Live Run — Step 1: GATHER (20 seconds)
+## [0:25] Live run — GATHER (40s)
 
-> "Let me run it. Step 1 is GATHER — the agent calls web_search three times: once for LinkedIn Jobs, once for Upwork, once for Wuzzuf. That's 15 candidates gathered in about 7 seconds."
+*[Click **شغّل الكشّاف / Run Scout**. Stay on the Log tab.]*
 
-*[Run: python3 scout.py — let the audience see the terminal output scrolling]*
+> “Step one is GATHER. Twenty-six sources in parallel: Wuzzuf, LinkedIn, Indeed, Bayt, GulfTalent, Upwork, مستقل, RemoteOK, Remotive, The Muse, and the rest. You’ll see some sources return jobs and some fail — that’s expected. We don’t fake listings when a board is down.”
 
-## [0:50] Live Run — Steps 2-3: READ + SCORE (60 seconds)
+## [1:05] READ + SCORE (50s)
 
-> "Step 2 is READ — the agent fetches the full job description from each of the top 8 URLs using page_reader. Step 3 is SCORE — an LLM scores each job on 4 criteria: skill match, domain match, seniority fit, and location fit. Total out of 9."
+> “Step two reads the actual job pages. Step three scores each one out of nine: skills, domain, seniority, location. Groq writes a specific why-fit instead of a keyword dump. Watch the live scores on the right — a junior React role in Egypt should sit at five or above. A Staff Engineer in San Francisco should not.”
 
-*[Let the terminal show the scoring output — audience sees scores like "6/9" and "2/9 [penalty: -2]"]*
+## [1:55] Design decision on camera (55s)
 
-## [1:50] Design Decision — Seniority Penalty (60 seconds)
+> “One design decision I would make again: the agent is not allowed to apply. Ranking is the job. Submitting is mine. The second half of that decision is the seniority penalty. On the first Python run, a Senior Front-End role scored five out of nine because React and healthcare matched. I’m a student. So I added four signals — LLM ‘too senior’ flag, the word senior in the title, six-plus years in the JD, lead or staff in the title — penalty two to four points, capped at minus four. Open the E3 panel: six tests, six pass. That’s mechanical, not a vibe.”
 
-> "Here's a design decision I want to explain. When I first ran the agent, a Senior Front-End Developer role scored 5 out of 9 — above my threshold — even though it requires 8 years of experience and I'm a student. The skill and domain match carried the score above the threshold.
+*[Point at the E3 6/6 panel on `/scout`.]*
 
-> So I added a multi-signal seniority penalty. It checks four things: does the LLM flag 'too senior'? Does the title or JD contain the word 'senior'? Does the JD require 6+ years? Is it a lead or principal role? If any of these fire, the score gets penalized by 2 to 4 points, capped at -4.
+## [2:50] Limitation on camera (45s)
 
-> You can see it working right here — the Acoer Senior role got penalized -2 and dropped from 5 to 2, which is below the threshold. The Valleysoft role got the same treatment. Both correctly filtered out."
+> “Honest limitation: a lot of boards block the reader. LinkedIn and Upwork often return Cloudflare or a login wall. Those jobs get a low-signal flag or a zero, and they fall out of the digest. I’m not guessing a JD I couldn’t read. The cost is coverage — especially freelance gigs. The next version would use official APIs or fewer blocked sources, not a stealth scraper.”
 
-## [2:50] Limitation — Cloudflare Blocks (45 seconds)
+*[If the log shows `[LinkedIn] failed` or `blocked/empty page`, point at it.]*
 
-> "Now let me be honest about a limitation. If you look at the Upwork results, 3 of them scored 0 out of 9. That's because Upwork blocks page_reader with a Cloudflare verification page — the agent can't read the actual job description.
+## [3:35] CV + apply kit (40s)
 
-> This is a known limitation. The agent handles it honestly — it scores those URLs 0 and filters them out, rather than guessing. But it means I'm losing 3 out of 8 candidates every run. In a future version, I'd use a different source for freelance gigs, or a paid scraping service that can bypass Cloudflare."
+> “If I upload my CV, search and scoring follow those skills. Here’s an apply kit: English pitch, Arabic why, talking points. I copy it, open the listing, and apply myself. Guardrail is still on screen: the agent never auto-applies.”
 
-## [3:35] E3 Eval Test (30 seconds)
+## [4:15] Close (20s)
 
-> "Let me prove the seniority fix works. This is the E3 eval test — 6 test cases covering all four signals."
-
-*[Run: python3 test_eval_e3.py — show all 6 tests passing]*
-
-> "All 6 pass. The penalty cap at -4 works — a perfect 9/9 with all four signals stays at 5/9, not lower."
-
-## [4:05] Final Digest (30 seconds)
-
-> "And here's the final digest. Today's run found 2 qualified roles — Frontend Developer at Halian, 6 out of 9, and Frontend Development Intern at Icura, 5 out of 9. Both are React roles at junior level, which is exactly what I'm looking for. The audit log records every URL fetched and scored, so I can review what was filtered out."
-
-*[Show the digest output + audit_log.json]*
-
-## [4:35] Wrap-up (25 seconds)
-
-> "That's Research Scout. 5 steps, 3 live tool connections, 20 tool calls per run, 90 seconds, zero cost on the free tier. The code, the build log, and the eval results are all on GitHub at Mahmoud-ABDALKream/research-scout."
+> “That’s the live run. Code and eval results: github.com/Mahmoud-ABDALKream/research-scout. Built with Cursor and Groq. Checked by me.”
 
 ---
 
-**Total: ~5 minutes. No slides. The real thing running live. One design decision (seniority penalty) and one limitation (Cloudflare blocks) explained on camera.**
+**Total ~4:30.** No slides. One decision (never auto-apply + E3 penalty). One limitation (blocked boards).

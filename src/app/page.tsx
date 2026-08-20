@@ -106,13 +106,29 @@ export default function Home() {
             }}
           >
             <Link
-              href="/work/medoniq"
+              href="/scout"
               style={{
                 display: "inline-block",
                 padding: "0.85rem 1.75rem",
                 background: "#4da8da",
                 color: "#0a1628",
                 fontWeight: 700,
+                borderRadius: "6px",
+                textDecoration: "none",
+                fontSize: "0.95rem",
+                transition: "background 0.15s",
+              }}
+            >
+              Open Research Scout →
+            </Link>
+            <Link
+              href="/work/medoniq"
+              style={{
+                display: "inline-block",
+                padding: "0.85rem 1.75rem",
+                border: "1px solid #4da8da",
+                color: "#e8f0f8",
+                fontWeight: 500,
                 borderRadius: "6px",
                 textDecoration: "none",
                 fontSize: "0.95rem",
@@ -139,6 +155,52 @@ export default function Home() {
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* ── Research Scout ── */}
+      <section
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "0 1.5rem 2.5rem",
+        }}
+      >
+        <HoverLink
+          href="/scout"
+          baseStyle={{
+            display: "block",
+            background: "rgba(77, 168, 218, 0.08)",
+            border: "1px solid rgba(77, 168, 218, 0.35)",
+            borderRadius: "12px",
+            padding: "1.35rem 1.5rem",
+            textDecoration: "none",
+            color: "inherit",
+          }}
+          hoverStyle={{
+            borderColor: "#4da8da",
+            transform: "translateY(-2px)",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "0.72rem",
+              color: "#4da8da",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              fontWeight: 700,
+              marginBottom: "0.45rem",
+            }}
+          >
+            Live agent
+          </p>
+          <h2 style={{ fontSize: "1.35rem", fontWeight: 800, marginBottom: "0.4rem" }}>
+            Research Scout is running on this site
+          </h2>
+          <p style={{ color: "#a0bcd4", fontSize: "0.95rem", lineHeight: 1.55 }}>
+            GATHER → READ → SCORE → FILTER → FORMAT. Pre-qualifies healthcare and
+            e-commerce roles, writes an audit log, and never auto-applies.
+          </p>
+        </HoverLink>
       </section>
 
       {/* ── Featured strip (3 cards) ── */}

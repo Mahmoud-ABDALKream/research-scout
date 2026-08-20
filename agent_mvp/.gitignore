@@ -29,6 +29,9 @@ run_output.txt
 digest_email.txt
 history.jsonl
 weekly_summary_*.txt
+last_result.json
+cv_profile.json
+tracker.json
 
 # Cron logs
 logs/
