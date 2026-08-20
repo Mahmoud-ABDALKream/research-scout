@@ -60,26 +60,38 @@ export async function enrichCvProfile(base: CvProfile, rawText: string) {
   return mergeCvProfiles(base, llm);
 }
 
-type PdfParser = {
-  getText: () => Promise<{ text?: string }>;
-  destroy?: () => Promise<void>;
-};
-
 async function extractPdfText(buffer: Buffer): Promise<string> {
-  const mod = (await import("pdf-parse")) as {
-    PDFParse?: new (opts: { data: Uint8Array }) => PdfParser;
-    default?: { PDFParse?: new (opts: { data: Uint8Array }) => PdfParser };
-  };
-  const PDFParse = mod.PDFParse || mod.default?.PDFParse;
-  if (!PDFParse) {
-    throw new Error("PDF parser failed to load. Paste the CV text, or upload DOCX/TXT.");
-  }
-
-  const parser = new PDFParse({ data: new Uint8Array(buffer) });
   try {
-    const out = await parser.getText();
-    return out.text || "";
-  } finally {
-    await parser.destroy?.();
+    const { extractText } = await import("unpdf");
+    const out = await extractText(new Uint8Array(buffer), { mergePages: true });
+    const text = typeof out.text === "string" ? out.text : out.text.join("\n");
+    if (text.trim().length >= 40) return text;
+  } catch {
+    /* serverless runtimes lack DOMMatrix; fall back to literal PDF strings */
   }
+  return extractPdfLiterals(buffer);
+}
+
+function extractPdfLiterals(buffer: Buffer): string {
+  const raw = buffer.toString("latin1");
+  const chunks: string[] = [];
+  const tj = /\(((?:\\.|[^\\)])*)\)\s*Tj/g;
+  const tjArray = /\[((?:(?!\])[\s\S])*)\]\s*TJ/g;
+  let m: RegExpExecArray | null;
+  while ((m = tj.exec(raw))) chunks.push(unescapePdfString(m[1]));
+  while ((m = tjArray.exec(raw))) {
+    const inner = m[1].match(/\(((?:\\.|[^\\)])*)\)/g) || [];
+    chunks.push(inner.map((s) => unescapePdfString(s.slice(1, -1))).join(""));
+  }
+  return chunks.join(" ").replace(/\s+/g, " ").trim();
+}
+
+function unescapePdfString(value: string) {
+  return value
+    .replace(/\\n/g, "\n")
+    .replace(/\\r/g, "\r")
+    .replace(/\\t/g, "\t")
+    .replace(/\\\(/g, "(")
+    .replace(/\\\)/g, ")")
+    .replace(/\\\\/g, "\\");
 }
