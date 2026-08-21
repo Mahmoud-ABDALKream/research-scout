@@ -17,6 +17,7 @@ This file is the package index. Every track deliverable should be reachable from
 | Deliverable | Where |
 |-------------|--------|
 | README (what / whom / setup / usage / architecture / v2 eval / limitations / AI transparency) | [README.md](../README.md) |
+| Portal paste (README + YouTube) | [SUBMISSION_FL09.md](SUBMISSION_FL09.md) |
 | Demo script (live run, 3–5 min, one decision + one limitation on camera) | [DEMO_SCRIPT.md](DEMO_SCRIPT.md) |
 | Demo video link | Paste into README after recording; post the same URL in the showcase thread |
 | E3 eval (6/6) | http://localhost:3000/api/scout/eval · dashboard E3 panel · [test_eval_e3.py](test_eval_e3.py) |

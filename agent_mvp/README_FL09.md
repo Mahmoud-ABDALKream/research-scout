@@ -2,9 +2,9 @@
 
 The documentation reviewers should follow is:
 
-**[../README.md](../README.md)**
+**[../README.md](../README.md)** — Make a README sections plus FL-09: what/whom, stranger setup, usage, architecture, v2 eval (E3 6/6), limitations, AI transparency.
 
-That file has: what it does and for whom, stranger setup, usage examples, architecture sketch, v2 eval (E3 6/6), limitations, AI transparency, and the demo-video placeholder.
+**Portal paste:** [SUBMISSION_FL09.md](SUBMISSION_FL09.md)
 
 Companion files in this folder:
 

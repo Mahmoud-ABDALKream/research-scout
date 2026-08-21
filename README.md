@@ -1,197 +1,214 @@
 # Research Scout
 
-A personal AI agent that pre-qualifies product roles for **Mahmoud ABD ELKream** — junior Front-End Developer & Product Designer in Alexandria, Egypt. Capstone for the [AI Fluency](https://general-ai-fluency.netlify.app/study-4d) track (FL-06 → FL-10).
+Research Scout is a personal job-prequalification agent for **Mahmoud ABD ELKream**, a junior Front-End Developer and Product Designer in Alexandria, Egypt.
 
-> One job done well: surface 3–5 pre-qualified healthcare / e-commerce / React roles so I stop scanning LinkedIn, Wuzzuf, and Upwork by hand. **The agent never auto-applies.** I click Apply.
+It finds React / healthcare / e-commerce roles, scores each listing against a CV, and returns a short digest. **It never submits an application.** You click Apply.
 
-**Live app:** [research-scout-swart.vercel.app/scout](https://research-scout-swart.vercel.app/scout)  
-**Portfolio (proof site):** [mahmoud-ahmed-abdelkream.vercel.app](https://mahmoud-ahmed-abdelkream.vercel.app)  
-**Repo:** [github.com/Mahmoud-ABDALKream/research-scout](https://github.com/Mahmoud-ABDALKream/research-scout)  
-**Capstone index (every track deliverable):** [`agent_mvp/DELIVERABLES_INDEX.md`](agent_mvp/DELIVERABLES_INDEX.md)
+Live dashboard: [research-scout-swart.vercel.app/scout](https://research-scout-swart.vercel.app/scout)  
+Source: [github.com/Mahmoud-ABDALKream/research-scout](https://github.com/Mahmoud-ABDALKream/research-scout)
 
----
-
-## What it does, and for whom
-
-Research Scout is for Mahmoud (IT student, ~3 years freelance, React / Next.js / TypeScript / Tailwind / Figma). Each run:
-
-1. **GATHER** — pulls listings in parallel from ~26 boards (Egypt/MENA + freelance + remote APIs).
-2. **READ** — fetches the job page (or scores from the snippet if the board blocks).
-3. **SCORE** — 4-criteria match out of 9, then Groq (`openai/gpt-oss-120b`) writes a specific why-fit. Heuristic scores still run if Groq is offline.
-4. **FILTER** — drops anything below **5/9**. Multi-signal seniority penalty (−2 to −4, cap −4) for senior / 6+ years / lead-principal titles.
-5. **FORMAT** — digest + apply kit (English pitch, Arabic why, talking points). You still submit the application.
-
-Upload a **CV** (PDF / DOCX / TXT) and the search + score use *your* skills, not a hard-coded profile.
+**Demo video (unlisted YouTube):** _paste the link here after recording_  
+Script: [`agent_mvp/DEMO_SCRIPT.md`](agent_mvp/DEMO_SCRIPT.md)
 
 ---
 
-## Setup a stranger can follow
+## Description
 
-### Prerequisites
+**Who it is for.** Mahmoud (IT student, ~3 years freelance: React, Next.js, TypeScript, Tailwind, Figma). Anyone who forks it can upload their own CV.
 
-- Node.js 20+
-- npm (or bun)
-- Optional: a [Groq](https://console.groq.com) API key for stronger CV parse, scoring, and apply kits
+**What it does each run**
 
-### Install and run
+1. **GATHER** — search ~26 boards in parallel (Wuzzuf, LinkedIn, Indeed, Bayt, Upwork, مستقل, RemoteOK, Remotive, The Muse, and others).
+2. **READ** — fetch the job page, or score from the snippet if the board blocks the request.
+3. **SCORE** — four criteria, total **/9** (skills 0–3, domain 0–2, seniority 0–2, location 0–2). Optional Groq why-fit.
+4. **FILTER** — drop scores below **5/9**. Senior / 6+ years / lead-principal titles get a −2 to −4 penalty (cap −4).
+5. **FORMAT** — numbered digest plus an apply kit (English pitch, Arabic why). You still apply by hand.
+
+**Guardrail.** Ranking is allowed. Auto-apply is not. There is no HTTP call that submits an application to a board.
+
+---
+
+## Installation
+
+A stranger with Node.js 20+ can reproduce this on Windows, macOS, or Linux.
 
 ```bash
 git clone https://github.com/Mahmoud-ABDALKream/research-scout.git
 cd research-scout
 npm install
+```
+
+Copy the env template:
+
+```bash
+# Windows (PowerShell)
 copy .env.example .env.local
+
+# macOS / Linux
+cp .env.example .env.local
 ```
 
-On macOS/Linux use `cp .env.example .env.local`.
-
-Edit `.env.local` if you have a Groq key:
+`.env.local` (Groq is optional — eval and heuristic scoring work without it):
 
 ```
-GROQ_API_KEY=gsk_your_key_here
+GROQ_API_KEY=
 GROQ_MODEL=openai/gpt-oss-120b
 ```
 
-Leave `GROQ_API_KEY` empty to run heuristic scoring only (eval still works).
+Start the app:
 
 ```bash
 npm run dev
 ```
 
-Open:
+Then open:
 
-| URL | What you should see |
-|-----|---------------------|
-| http://localhost:3000 | Portfolio home |
+| URL | Expected |
+|-----|----------|
 | http://localhost:3000/scout | Scout dashboard |
-| http://localhost:3000/api/scout/eval | E3 eval JSON — expect `"passed": 6, "total": 6` |
+| http://localhost:3000/api/scout/eval | JSON `"passed": 6, "total": 6` |
 
-### Usage examples
+Vercel: add `GROQ_API_KEY` under Project Settings → Environment Variables, then Redeploy. Local `.env.local` is gitignored and does not deploy.
 
-**1. Default run (Mahmoud profile)**  
-Open `/scout` → **Run Scout**. Watch GATHER → READ → SCORE → FILTER → FORMAT in the log. Open a role → **Apply kit** → copy the pitch → click the listing yourself.
+---
 
-**2. CV-matched run**  
-Upload a PDF/Word/TXT (or paste 40+ characters of CV text) → skills chips appear → **Run Scout**. Queries and scores follow that CV.
+## Usage
 
-**3. Reproduce the v2 eval (no network jobs required)**
+**Default run (built-in Mahmoud profile)**
+
+1. Open `/scout`.
+2. Click **Run Scout** (or **شغّل الكشّاف**).
+3. Watch GATHER → READ → SCORE → FILTER → FORMAT in the log.
+4. Open a qualified role → **Apply kit** → copy the pitch → open the listing yourself.
+
+**CV-matched run**
+
+1. Upload PDF, Word, or TXT, or paste at least 40 characters of CV text.
+2. Confirm the skill chips look right.
+3. Click **Run Scout**. Search queries and scores follow that CV.
+
+**Reproduce the v2 eval (no job-board network required)**
 
 ```bash
 curl http://localhost:3000/api/scout/eval
 ```
 
-Or open `/scout` and read the E3 panel. All six seniority-penalty cases must pass.
+Expected: six seniority-penalty cases, all `pass: true`.
 
-**4. Original Python MVP (optional)**
+**Expected digest shape**
 
-```bash
-python agent_mvp/scout.py
-python agent_mvp/test_eval_e3.py
 ```
-
-That path still uses the z-ai CLI. The **supported** product is the Next.js app above.
+[1] Junior React Developer @ Example (Remote-Egypt) [NEW] [EGYPT]
+    Score: 7/9 | Skills 3/3 · Domain 2/2 · Seniority 2/2 · Location 2/2
+    Why: Stack and healthcare overlap; junior-friendly title.
+    Apply: https://…
+Guardrail: agent never auto-applies. You click Apply.
+```
 
 ---
 
-## Architecture sketch
+## Architecture
 
 ```
-CV / default profile
+CV upload or default profile
         │
         ▼
-┌──────────────────────────────────────────────────────────┐
-│  /scout  (Arabic-first dashboard, never auto-applies)    │
-└──────────────────────────────────────────────────────────┘
-        │ POST /api/scout/run  (SSE)
+   /scout dashboard
+        │  POST /api/scout/run (SSE)
         ▼
-┌─────────┐   ┌─────────┐   ┌──────────────┐   ┌─────────┐   ┌─────────┐
-│ GATHER  │──▶│  READ   │──▶│ SCORE        │──▶│ FILTER  │──▶│ FORMAT  │
-│ 26 src  │   │ JD page │   │ heuristic/9  │   │ ≥ 5/9   │   │ digest  │
-│ Wuzzuf, │   │ or snip │   │ + Groq why   │   │ skip    │   │ apply   │
-│ LinkedIn│   │         │   │ + E3 penalty │   │ list    │   │ kit     │
-│ APIs…   │   │         │   │              │   │         │   │         │
-└─────────┘   └─────────┘   └──────────────┘   └─────────┘   └─────────┘
+ GATHER ──▶ READ ──▶ SCORE ──▶ FILTER ──▶ FORMAT
+  ~26 src    JD/snip   /9 + Groq    ≥ 5/9     digest
+                       + E3 penalty  skip     apply kit
         │
         ▼
-  agent_mvp/  last_result.json · history.jsonl · audit_log.json · tracker.json
+  /tmp on Vercel, or agent_mvp/ locally
 ```
 
-**Design decision that stays:** ranking is allowed; submitting applications is not. Guardrail is in the product copy, the apply kit, and the code path — there is no “apply” HTTP call to a board.
+| Piece | Path |
+|-------|------|
+| Pipeline | `src/lib/scout/` |
+| UI | `src/app/scout/` |
+| APIs | `src/app/api/scout/` |
+| E3 tests | `src/lib/scout/eval-e3.ts`, `agent_mvp/test_eval_e3.py` |
+| Original Python MVP | `agent_mvp/scout.py` |
+
+The supported product is the Next.js app. The Python script is the FL-07 artifact.
 
 ---
 
-## V2 eval results (E3 seniority penalty)
+## V2 eval results
 
-Recorded against `GET /api/scout/eval` (same logic as `agent_mvp/test_eval_e3.py`).
+Recorded from `GET /api/scout/eval` (same rules as `python agent_mvp/test_eval_e3.py`).
+
+### E3 — seniority penalty (6/6 pass)
 
 | Case | Expected | Actual | Penalty | Pass |
 |------|----------|--------|---------|------|
 | LLM `"too senior"` flag only | 3 | 3 | −2 | yes |
-| `"Senior"` in title (no LLM flag) | 3 | 3 | −2 | yes |
-| 6+ years required | 5 | 5 | −1 | yes |
-| Lead / staff title extra penalty | 5 | 5 | −2 | yes |
+| `"Senior"` in title, no LLM flag | 3 | 3 | −2 | yes |
+| 6+ years required in JD | 5 | 5 | −1 | yes |
+| Lead / staff title | 5 | 5 | −2 | yes |
 | Junior role — no penalty | 7 | 7 | 0 | yes |
 | Penalty cap at −4 | 5 | 5 | −4 | yes |
 
-**6 / 6 pass.** A 5/9 senior role with a “too senior” flag drops to 3/9 (below threshold). A perfect 9/9 with every senior signal still lands at 5/9, not zero — the cap is intentional so domain-perfect senior roles stay visible in the audit log.
+A 5/9 senior role with a “too senior” flag drops to **3/9** (below threshold). A 9/9 listing that hits every senior signal lands at **5/9**, not 0 — the cap keeps extreme senior roles in the audit log.
 
-| Eval | What we test | Result |
-|------|----------------|--------|
-| **E1** Standard day | Mix of fits; nothing below 5/9 in the digest | Digest is filtered; audit keeps the rest |
-| **E2** Quiet day | Fewer than 3 above threshold | Honest “thin day” line; no padding |
-| **E3** Senior + high domain | Multi-signal penalty | **6/6 tests pass** (table above) |
-| **E4** US/EU on-site, no visa | Location 0 + `visa issue` flag | Filtered or ranked last |
-| **E5** Thin / collection page | `low-signal` or `listing-page` | Dropped unless the remaining score is still high |
+### Full eval set
 
----
-
-## Limitations (not hidden)
-
-1. **Job boards block scrapers.** LinkedIn, Upwork, Wuzzuf, and others often return Cloudflare / login walls. Those URLs score from a snippet or 0/9 and are logged, not guessed. This is the limitation to name on camera in the demo.
-2. **Groq is optional and rate-limited.** Without `GROQ_API_KEY`, scoring is keyword/heuristic only. With a key, batches can fail; the run keeps heuristic scores.
-3. **Search coverage is uneven.** Remote APIs (RemoteOK, Remotive, Jobicy, Arbeitnow, The Muse) are structured. Egypt boards are DuckDuckGo `site:` queries — noisier, fewer deep JDs.
-4. **PDF text extraction is brittle.** Scanned CVs and some layouts yield too little text. Paste or DOCX is the reliable fallback. (`pdf-parse` v2 is a class, not a function — that bug is fixed, but scans still fail.)
-5. **LLM scoring can overfit wording.** Groq must quote the JD; the seniority penalty still runs as a mechanical check so a fluent “great junior role” cannot hide an 8-year title.
-6. **No email send from the contact form.** The portfolio form validates and returns a mailto-style next step; it does not call Resend.
-7. **Not a production crawler.** No residential proxies, no official LinkedIn API, no auto-apply. That is the product boundary, not a missing checkbox.
+| ID | Scenario | Result |
+|----|----------|--------|
+| E1 | Mix of fits | Digest contains only scores ≥ 5/9 |
+| E2 | Quiet day | “Thin day” note; no padding with weak jobs |
+| E3 | Senior + high domain match | **6/6 tests pass** |
+| E4 | US/EU on-site, no visa | `visa issue` flag; filtered or ranked last |
+| E5 | Thin JD / collection page | `low-signal` or `listing-page`; dropped unless remaining score is high |
 
 ---
 
-## Demo (FL-09)
+## Limitations
 
-Live run, no slides, 3–5 minutes. Narration script: [`agent_mvp/DEMO_SCRIPT.md`](agent_mvp/DEMO_SCRIPT.md).
-
-**Video link (showcase thread):** add the public Loom / YouTube URL here after recording.
-
-Must include on camera: **one design decision** (never auto-apply + seniority penalty) and **one limitation** (boards that block the reader).
-
----
-
-## What I built with AI, and how (transparency)
-
-I used **Cursor (Grok) as a build partner** and **Groq at runtime**.
-
-- **I specified:** the 5-step job, the /9 rubric, the never-auto-apply rule, Egypt-first ranking, CV-driven search, and the E3 penalty table.
-- **AI drafted:** the TypeScript port (`src/lib/scout/`), the `/scout` dashboard, Groq JSON prompts, and PDF/DOCX upload glue.
-- **I checked myself:** every eval case (6/6), the `pdfParse is not a function` break on pdf-parse v2, that `.env.local` is gitignored, that no code path posts an application, and that Groq’s older Llama IDs 404 — we switched to `openai/gpt-oss-120b` after listing models for this key.
-- **Runtime AI:** Groq enriches CV parse, why-fit, digest, and apply kits. If Groq is down, the pipeline still finishes.
-
-This is the [AI Fluency transparency](https://general-ai-fluency.netlify.app/study-4d) line: AI wrote a lot of the code; I verified the agent still does *one job* and does not pretend it applied for me.
+1. **Boards block the reader.** LinkedIn, Upwork, and similar often return Cloudflare or a login wall. Those URLs score from a snippet or 0/9. The agent does not invent a job description it could not read. **Name this on camera.**
+2. **Groq is optional.** Without `GROQ_API_KEY`, scoring is heuristic. Failed Groq batches keep the heuristic score.
+3. **Egypt coverage is noisier than remote APIs.** Wuzzuf/LinkedIn come through DuckDuckGo `site:` queries, not official APIs.
+4. **Scanned PDFs extract poorly.** Paste text or upload DOCX if the PDF is an image.
+5. **Serverless storage is ephemeral.** On Vercel, files go to `/tmp`. The browser keeps the uploaded CV and sends it with each run.
+6. **Not a crawler product.** No proxies, no LinkedIn official API, no auto-apply.
 
 ---
 
-## Project layout
+## Demo
 
-```
-src/lib/scout/          # gather, read, score, groq, eval, persist
-src/app/scout/          # dashboard UI
-src/app/api/scout/      # run (SSE), cv, eval, tracker, history, export
-agent_mvp/              # Python MVP + FL-09/FL-10 docs + run artifacts (gitignored)
-```
+Record a **live** end-to-end run, **3–5 minutes**, **no slides**, with voice narration.
 
-Portfolio pages (`/`, `/about`, `/work`, `/contact`) live in the same Next.js 16 app.
+On camera you must explain:
+
+- **One design decision:** the agent must not auto-apply; seniority penalty (E3 6/6) exists so a Senior React role cannot pass on stack match alone.
+- **One limitation / guardrail:** blocked job boards (Cloudflare / login walls).
+
+How to record: [OBS Studio](https://obsproject.com/) (no watermark) or Loom. Upload as an **unlisted YouTube** video. Paste the URL at the top of this README and in the internship portal.
+
+Word-for-word script: [`agent_mvp/DEMO_SCRIPT.md`](agent_mvp/DEMO_SCRIPT.md).
+
+---
+
+## Built with AI (transparency)
+
+Cursor drafted much of `src/lib/scout/` and the `/scout` UI. I specified the five-step job, the /9 rubric, never-auto-apply, and the E3 table. I checked: eval 6/6, no apply HTTP path, Groq model IDs that 404, Vercel read-only disk, and PDF parsing on serverless. Groq is optional at runtime for why-fit and apply kits.
+
+---
+
+## Contributing
+
+Pull requests are welcome for extra **public** job APIs and eval cases. Open an issue first for large changes. Do not add auto-apply. Do not commit API keys. Run `npm run build` and open `/api/scout/eval` (expect 6/6) before you send a PR.
 
 ---
 
 ## License
 
-MIT — fork and change the match criteria. Do not commit API keys.
+[MIT](LICENSE). Fork and change the match criteria for your own CV.
+
+---
+
+## Authors
+
+Mahmoud ABD ELKream — Alexandria, Egypt — mahmoudabdelkreambusiness@gmail.com
