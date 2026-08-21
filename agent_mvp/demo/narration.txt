@@ -1,0 +1,27 @@
+This is Research Scout, my AI Fluency capstone.
+
+It is a personal agent that pre-qualifies React and product roles for me: healthcare, e-commerce, junior-friendly, Egypt or remote.
+
+I used to spend half an hour a day scanning LinkedIn, Wuzzuf, and Upwork. The agent gathers listings, reads the job pages, scores each one, and filters the weak fits. I still click Apply. It never submits an application. That is the first thing to understand: ranking is the job. Submitting is mine.
+
+Watch the live dashboard. I am clicking Run Scout now. No slides. This is the real app.
+
+Step one is gather. About twenty-six sources run in parallel: Wuzzuf, LinkedIn, Indeed, Bayt, GulfTalent, Upwork, Mostaql, RemoteOK, Remotive, The Muse, We Work Remotely, Hacker News, and others. Some sources return jobs. Some fail. That is expected. When a board is down, we do not fake listings.
+
+Step two is read. The agent fetches the actual job description from each top URL. If the page is blocked, it scores from the snippet instead of inventing text.
+
+Step three is score. Each role is scored out of nine: skill match, domain match, seniority fit, and location fit. A junior React role in Egypt should sit at five or above. A Staff Engineer in San Francisco should not. Watch the live scores appear.
+
+Now the design decision I would make again.
+
+The agent is not allowed to apply. There is no HTTP call that submits an application to a job board. Ranking is allowed. Auto-apply is not. That is a product boundary, not a missing feature.
+
+The other half of that decision is the seniority penalty. On the first run, a Senior Front-End role scored five out of nine because React and healthcare matched. I am a student. Five is the threshold, so that senior role would have landed in my digest.
+
+So I added four mechanical signals: an LLM too-senior flag, the word senior in the title, six-plus years in the job description, and lead or staff in the title. The penalty is two to four points, capped at minus four. Here is the eval panel: six tests, six pass. That is mechanical, not a vibe.
+
+Honest limitation: a lot of boards block the reader. LinkedIn and Upwork often return Cloudflare or a login wall. Those jobs get a low-signal flag or a zero, and they fall out of the digest. I do not invent a job description I could not read. The cost is coverage, especially freelance gigs. A future version would use official APIs or RSS, not a stealth scraper.
+
+If I upload my C V, search and scoring follow those skills. Here is an apply kit: an English pitch and an Arabic why. I copy it, open the listing, and apply myself. The guardrail is still on screen: the agent never auto-applies.
+
+That is the live run. Code, README, and eval results are on GitHub at Mahmoud ABD ALKream slash research-scout. Built with AI as a partner. Checked by me.

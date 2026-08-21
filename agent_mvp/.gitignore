@@ -33,5 +33,10 @@ last_result.json
 cv_profile.json
 tracker.json
 
+# Demo recording binaries (keep scripts)
+demo/out/
+demo/node_modules/
+demo/package-lock.json
+
 # Cron logs
 logs/

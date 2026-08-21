@@ -7,8 +7,8 @@ It finds React / healthcare / e-commerce roles, scores each listing against a CV
 Live dashboard: [research-scout-swart.vercel.app/scout](https://research-scout-swart.vercel.app/scout)  
 Source: [github.com/Mahmoud-ABDALKream/research-scout](https://github.com/Mahmoud-ABDALKream/research-scout)
 
-**Demo video (unlisted YouTube):** _paste the link here after recording_  
-Script: [`agent_mvp/DEMO_SCRIPT.md`](agent_mvp/DEMO_SCRIPT.md)
+**Demo video (unlisted YouTube):** _paste after upload_  
+Local file already recorded with AI voice: `agent_mvp/demo/out/research-scout-demo.mp4` (also copied to Desktop). Upload that file to YouTube as **Unlisted**, then paste the URL here.
 
 ---
 
